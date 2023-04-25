@@ -1,0 +1,13 @@
+*.dll
+*.exp
+*.obj
+*.o
+*.exe
+*.zip
+*.node
+*.raw
+*.lib
+node_modules/
+glfw/
+freeglut/
+libuv/

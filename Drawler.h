@@ -27,7 +27,7 @@ public:
 
     void SetMesh(const std::vector<Triangle> &);
 
-    bool CheckIsClose();
+    bool CheckIsClose() const;
 
     void CalculateNorm();
     void RenderFrame();

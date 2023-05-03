@@ -62,23 +62,15 @@ var privateMap = new WeakMap();
 /**
  * Creates a Marching cubes algorithm instance
  * @class
- * @param {string} sourceRAWPath - The source RAW file path
+ * @param {string|Buffer} sourceRAWFile - The source RAW file, if given parameter is string, it will read the given string as filename and read the raw file from disk, otherwise, if the given parameter is a buffer, it will read the raw file from given buffer
  * @param {Dimension} dimension - The dimension structure of RAW file
  */
-function MarchingCube(sourceRAWPath, dimension) {
+function MarchingCube(sourceRAWFile, dimension) {
   /**
    * The privateVariable stores the private variable of marching cubes instance
    * @memberof MarchingCube
    */
   var privateVariable = {
-    /**
-     * sourceRAWPath indicates the source RAW file path
-     * @memberof MarchingCube
-     * @type {string}
-     * @private
-     */
-    sourceRAWPath: sourceRAWPath,
-
     /**
      * dimension indicates the dimension structure of RAW file
      * @memberof MarchingCube
@@ -130,7 +122,7 @@ function MarchingCube(sourceRAWPath, dimension) {
   };
 
   privateVariable.marchingCubeHandle = nativeBinding.CreateMarchingCubeInstance(
-    sourceRAWPath,
+    sourceRAWFile,
     dimension
   );
 

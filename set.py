@@ -12,6 +12,15 @@ sb.wait()
 
 sb = subprocess.Popen(['npm', 'run', 'build-native'],
                       shell=True, cwd=os.path.realpath('./node'))
+sb.wait()
+
+sb = subprocess.Popen(['npm', 'i', '--ignore-scripts'],
+                      shell=True, cwd=os.path.realpath('./dicom2raw/node'))
+sb.wait()
+
+sb = subprocess.Popen(['npm', 'run', 'build-native'],
+                      shell=True, cwd=os.path.realpath('./dicom2raw/node'))
+sb.wait()
 
 shutil.copy('freeglut/bin/freeglut.dll', 'Node/freeglut.dll')
 shutil.copy('glfw/bin/glfw3.dll', 'Node/glfw3.dll')

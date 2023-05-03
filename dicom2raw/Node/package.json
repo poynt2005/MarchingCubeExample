@@ -1,0 +1,19 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "path.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp rebuild",
+    "build-native": "npm run build-dll && powershell -F .\\build.ps1",
+    "build-dll": "cd ..\\ && mingw32-make dll && echo F | xcopy /Y .\\DicomRawConverterAPI.dll .\\Node\\DicomRawConverterAPI.dll"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "gypfile": true,
+  "devDependencies": {
+    "node-addon-api": "^6.1.0"
+  }
+}

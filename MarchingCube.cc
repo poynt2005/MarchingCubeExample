@@ -186,12 +186,12 @@ void MarchingCube::CalculateMesh(const unsigned int x, const unsigned int y, con
     }
 }
 
-void MarchingCube::GetCurrentMesh(std::vector<Triangle> &outMesh)
+void MarchingCube::GetCurrentMesh(std::vector<Triangle> &outMesh) const
 {
     outMesh = std::vector<Triangle>(currentMesh.begin(), currentMesh.end());
 }
 
-void MarchingCube::GetCurrentMeshNormalized(std::vector<Triangle> &outMesh)
+void MarchingCube::GetCurrentMeshNormalized(std::vector<Triangle> &outMesh) const
 {
     outMesh.resize(currentMesh.size());
 
@@ -215,19 +215,19 @@ void MarchingCube::GetCurrentMeshNormalized(std::vector<Triangle> &outMesh)
     }
 }
 
-void MarchingCube::GetCurrentBoundingBox(fPoint &max, fPoint &min)
+void MarchingCube::GetCurrentBoundingBox(fPoint &max, fPoint &min) const
 {
     max = currentBoundingBox[0];
     min = currentBoundingBox[1];
 }
 
-unsigned int MarchingCube::GetPointData(const unsigned int width, const unsigned int height, const unsigned int depth)
+unsigned int MarchingCube::GetPointData(const unsigned int width, const unsigned int height, const unsigned int depth) const
 {
     const auto index = depth * rawDimension.height * rawDimension.width + height * rawDimension.width + width;
     return static_cast<unsigned int>(rawBuffer[index]);
 }
 
-void MarchingCube::VertexInterpolate(const uPoint &p1, const uPoint &p2, const unsigned int p1Val, const unsigned int p2Val, fPoint &outInterp)
+void MarchingCube::VertexInterpolate(const uPoint &p1, const uPoint &p2, const unsigned int p1Val, const unsigned int p2Val, fPoint &outInterp) const
 {
 
     /**

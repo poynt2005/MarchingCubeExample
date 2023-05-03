@@ -3,7 +3,7 @@
 
 int main()
 {
-    const char *rawFileName = "ABC_64_64_64.raw";
+    const char *rawFileName = "ABC_512_512_51.raw";
     const char *objFileName = "result.obj";
 
     Dimension fileDimension;

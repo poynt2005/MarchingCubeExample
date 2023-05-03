@@ -1,6 +1,6 @@
 #include "../MarchingCubeAPI.h"
 #include "../DrawlerAPI.h"
-#include "../Table.h"
+#include "../Types.h"
 
 #include <Napi.h>
 #include <string>
@@ -134,9 +134,9 @@ Napi::Value Node_CreateMarchingCubeInstance(const Napi::CallbackInfo &info)
         return env.Null();
     }
 
-    if (!info[0].IsString())
+    if (!info[0].IsString() && !info[0].IsBuffer())
     {
-        Napi::TypeError::New(env, "Wrong Arguments, position 0 excepted one string").ThrowAsJavaScriptException();
+        Napi::TypeError::New(env, "Wrong Arguments, position 0 excepted one string or buffer").ThrowAsJavaScriptException();
         return env.Null();
     }
 
@@ -146,7 +146,6 @@ Napi::Value Node_CreateMarchingCubeInstance(const Napi::CallbackInfo &info)
         return env.Null();
     }
 
-    auto rawFilename = info[0].As<Napi::String>().Utf8Value();
     auto dimObj = info[1].As<Napi::Object>();
 
     auto dimObjw = dimObj.Get("width");
@@ -176,7 +175,20 @@ Napi::Value Node_CreateMarchingCubeInstance(const Napi::CallbackInfo &info)
         dimObjd.As<Napi::Number>().Uint32Value(),
     };
 
-    const auto handle = CreateMarchingCubeInstance(rawFilename.data(), &dimension);
+    MCHandle handle;
+
+    if (info[0].IsString())
+    {
+        auto rawFilename = info[0].As<Napi::String>().Utf8Value();
+        handle = CreateMarchingCubeInstance(rawFilename.data(), &dimension);
+    }
+    else if (info[0].IsBuffer())
+    {
+        auto jsRawFileBuf = info[0].As<Napi::Buffer<char>>();
+        auto rawFileBuf = std::make_unique<char[]>(jsRawFileBuf.Length());
+        memcpy(rawFileBuf.get(), jsRawFileBuf.Data(), jsRawFileBuf.Length());
+        handle = CreateMarchingCubeInstanceFromBuffer(rawFileBuf.get(), jsRawFileBuf.Length(), &dimension);
+    }
 
     if (!handle)
     {

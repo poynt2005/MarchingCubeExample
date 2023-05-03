@@ -7,7 +7,10 @@
 *.node
 *.raw
 *.lib
-node_modules/
-glfw/
-freeglut/
-libuv/
+node_modules
+glfw
+freeglut
+libuv
+GDCM
+opencv
+sample_dicom

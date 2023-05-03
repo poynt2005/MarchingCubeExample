@@ -81,7 +81,7 @@ void Drawler::CalculateNorm()
     }
 }
 
-bool Drawler::CheckIsClose()
+bool Drawler::CheckIsClose() const
 {
     return static_cast<bool>(glfwWindowShouldClose(window));
 }

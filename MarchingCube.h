@@ -16,9 +16,9 @@ public:
     void March(const unsigned int);
     void March();
 
-    void GetCurrentMesh(std::vector<Triangle> &);
-    void GetCurrentMeshNormalized(std::vector<Triangle> &);
-    void GetCurrentBoundingBox(fPoint &, fPoint &);
+    void GetCurrentMesh(std::vector<Triangle> &) const;
+    void GetCurrentMeshNormalized(std::vector<Triangle> &) const;
+    void GetCurrentBoundingBox(fPoint &, fPoint &) const;
     void WriteCurrentMeshToObj(const std::string &);
 
     static bool ParseFileName(const std::string &, Dimension &);
@@ -42,10 +42,10 @@ private:
     void CalculateMesh(const unsigned int, const unsigned int, const unsigned int);
 
     /** Get data of a given point*/
-    inline unsigned int GetPointData(const unsigned int, const unsigned int, const unsigned int);
+    inline unsigned int GetPointData(const unsigned int, const unsigned int, const unsigned int) const;
 
     /** Interpolate the cross point over the surface*/
-    void VertexInterpolate(const uPoint &, const uPoint &, const unsigned int, const unsigned int, fPoint &);
+    void VertexInterpolate(const uPoint &, const uPoint &, const unsigned int, const unsigned int, fPoint &) const;
 
     /** Calculate the bounding box */
     inline void CalculBounding(const fPoint &);

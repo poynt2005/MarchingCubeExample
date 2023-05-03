@@ -1,8 +1,8 @@
 var MarchingCube = require("./MarchingCube");
 
-var rawFilename = "../ABC_64_64_64.raw";
+var rawFilename = "./ABC_512_512_51.raw";
 var rawDim = MarchingCube.ParseFileName(rawFilename);
-var isoValue = 10;
+var isoValue = 100;
 
 console.log(
   "Filename: %s, width: %d, height: %d, depth: %d",
@@ -61,7 +61,7 @@ var interval = setInterval(function () {
     rotateAngle = 0;
   }
 
-  mc.SetRotate(rotateAngle, "x");
+  mc.SetRotate(rotateAngle, "y");
 
   rotateAngle += 1;
   mc.RenderFrame();
